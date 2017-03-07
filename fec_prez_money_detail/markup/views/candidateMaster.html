@@ -1,0 +1,12 @@
+﻿<div>
+    <input type="file" id="candidateMaster" > <input type="button" value="Upload" ng-click="uploadCandidateMaster()" class="uploadButtonStyle" />
+   <table>
+       <tr>
+           <th  ng-repeat="displayTableField in displaySchema">{{displayTableField.display}}</th>
+       </tr>
+       <tr  ng-repeat="record in records">
+           <td ng-repeat="displayTableField in displaySchema">{{record[displayTableField.key]}}</td>
+
+       </tr>
+   </table>
+</div>

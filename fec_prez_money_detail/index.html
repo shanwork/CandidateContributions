@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html ng-app="fecPrezMoneyApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta title="RAFT">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css" />
+
+    <style>
+                /* TODO move to style.css after formalization, since we are not using DataTable, the highlight classes derived from 'dataTable...' do not work
+        table table-striped is a bootstrap class
+         */
+                table.table-striped tr.selectedL {
+                    background-color: #cce0f5;
+                    font-weight: bold;
+                }
+    </style>
+    <title>PRESIDENTIAL CANDIDATE DATA </title>
+</head>
+
+
+<body>
+    <!-- Main SPA area    -->
+    <div id='mainAppDiv' style='overflow:auto;' ng-controller="IndexPageController">
+        <div id="landing"  >
+            <div class="navbar" id="header"  >
+                <img id="logo" src="images/header_logo.gif" alt="Roche" height="36" width="70" class="pull-right" />
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <h2 class="text-muted" ng-click="redirectLastTab()">Presidential Campaign Details</h2>
+                    </li>
+                    <li class="nav-item offset-left">
+                        {{currentYear}}
+                    </li>
+
+                    <li class="nav-item offset-left">
+
+                        <button type="button" class="btn btn-link" ng-show="isRole('fieldengineer',false)||isRole('il3',true)" ng-click="redirectLastTab()">Home Page</button>
+                        <a ng-show="isRole('admin',true)" href="#/fieldEngineer">Field Engineer</a>
+                        <a href="{{roleDependentMenus.href}}"> <button type="button" class="btn btn-link">{{roleDependentMenus.name}}</button></a>
+                        <button type="button" class="btn btn-link" style="margin-top: 1px;" ng-click="inSession.logout()">Logout</button>
+                    </li>
+                </ul>
+            </div>
+            <!---- MAIN CONTENT-->
+            <!--- wait dialog -->
+            <div id="waitModal" class="modal fade" role="dialog">
+                <div class="alert-dialog" style="margin: 200px">
+                    <div class="modal-content">
+                        <h4>PLEASE WAIT....</h4>
+                        <!--img id="logo"  src="images/please_wait2.gif" alt="Roche" height="36" width="100"   style="margin-left: 500px;background-color: #808080;opacity: 0.7"  /-->
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Error Dialog-->
+            <div id="diagnosticModal" class="modal fade" role="dialog">
+                <div class="alert-dialog" style="margin: 200px">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" style="color: maroon;"><b>{{alertHeader}}</b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <h4>{{alertBody}}</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="confirmModal" class="modal fade" role="dialog">
+                <div class="alert-dialog" style="margin: 200px">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" style="color: maroon;"><b>{{alertHeader}}</b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <h4>{{alertBody}}</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-click="callBack()" data-dismiss="modal">OK</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div ng-view style="margin: auto;"></div>
+            <!---- /MAIN CONTENT-->
+
+          
+        </div>
+    </div>
+    <!-- SCRIPTING-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- TODO Delete if we are not using these
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    -->
+
+    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.9/angular.js" data-semver="1.4.9"></script>
+    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.9/angular-route.js" data-semver="1.4.9"></script>
+    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.9/angular-cookies.js" data-semver="1.4.9"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
+
+    <script src="scripts/angular.nvd3.js"></script>
+    
+    <script src="scripts/app.js"></script>
+    <script src="scripts/misc/generalConfig.js"></script>
+    <script src="scripts/misc/schema.js"></script>
+
+    <script src="scripts/globals/fecDataFactory.js"></script>
+    <script src="scripts/globals/commiteeLinkageFactory.js"></script>
+    <script src="scripts/pageScripts/committeeContributionsController.js"></script>
+    <script src="scripts/pageScripts/candidateMasterController.js"></script>
+    <script src="scripts/pageScripts/committeeMasterController.js"></script>
+
+
+</body>
+</html>

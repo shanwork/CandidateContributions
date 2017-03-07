@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e40fa7a2-7438-4fbd-8251-d4d5b534d5b4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:56158/FECFunding.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FECFunding.xsd" MetadataType="Schema" ID="038f8e41-ef22-4449-aaa0-5e423cdaa012" SourceId="1" SourceUrl="http://localhost:56158/FECFunding.svc?xsd=xsd1" />
+    <MetadataFile FileName="FECFunding1.xsd" MetadataType="Schema" ID="8df5d703-176a-47d2-a7eb-f8bdcc20ec12" SourceId="1" SourceUrl="http://localhost:56158/FECFunding.svc?xsd=xsd0" />
+    <MetadataFile FileName="FECFunding.wsdl" MetadataType="Wsdl" ID="0bc281ac-a47a-40a3-80b2-c3a9bbb9df4f" SourceId="1" SourceUrl="http://localhost:56158/FECFunding.svc?wsdl" />
+    <MetadataFile FileName="FECFunding2.xsd" MetadataType="Schema" ID="49cbe654-970b-4a8c-accc-3c5d07da8aa0" SourceId="1" SourceUrl="http://localhost:56158/FECFunding.svc?xsd=xsd2" />
+    <MetadataFile FileName="FECFunding.disco" MetadataType="Disco" ID="bf513939-aa01-466d-9072-bb3a16d9e2d1" SourceId="1" SourceUrl="http://localhost:56158/FECFunding.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

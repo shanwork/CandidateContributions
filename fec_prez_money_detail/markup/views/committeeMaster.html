@@ -1,0 +1,29 @@
+﻿<div>
+    <div ng-show="retrievedCandidateCommitteeLinkage==true">
+        <input type="file" id="committeeMaster"> <input type="button" value="Upload Committee" ng-click="uploadCommitteeMaster()" class="uploadButtonStyle" />
+    </div>
+    <div ng-show="retrievedCommitteeData==true">
+        <input type="file" id="candidateMaster"> <input type="button" value="Upload Candidate" ng-click="uploadCandidateMaster()" class="uploadButtonStyle" />
+    </div>
+    <input type="file" id="candidateCommitteeLinkage"> <input type="button" value="Upload CandidateCommitteeLinkage" ng-click="uploadCandidateCommitteeLinkage()" class="uploadButtonStyle" />
+    <input type="file" id="candidateCommitteeContri"> <input type="button" value="Upload CandidateCommittee FUNDS" ng-click="uploadCommitteeCandidateContributions()" class="uploadButtonStyle" />
+
+        <table>
+            <tr>
+                <th ng-repeat="committeeDisplayTableField in committeeDisplaySchema">{{committeeDisplayTableField.display}}</th>
+            </tr>
+            <tr ng-repeat="record in committeerecords">
+                <td ng-repeat="committeeDisplayTableField in committeeDisplaySchema">{{record[committeeDisplayTableField.key]}}</td>
+
+            </tr>
+        </table>
+    <table>
+        <tr>
+            <th ng-repeat="displayTableField in candidateDisplaySchema">{{displayTableField.display}}</th>
+        </tr>
+        <tr ng-repeat="record in candidateRecords">
+            <td ng-repeat="displayTableField in candidateDisplaySchema">{{record[displayTableField.key]}}</td>
+
+        </tr>
+    </table>
+    </div>
